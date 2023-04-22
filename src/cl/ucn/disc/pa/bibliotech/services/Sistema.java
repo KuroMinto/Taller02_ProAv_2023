@@ -61,10 +61,10 @@ public final class Sistema {
             this.socios = Utils.append(this.socios, new Socio("John", "Doe", "john.doe@ucn.cl", 1, "john123"));
 
             // creo un libro y lo agrego al arreglo de libros.
-            this.libros = Utils.append(this.libros, new Libro("1491910771", "Head First Java: A Brain-Friendly Guide", " Kathy Sierra", "Programming Languages", 0, 1));
+            this.libros = Utils.append(this.libros, new Libro("1491910771", "Head First Java: A Brain-Friendly Guide", " Kathy Sierra", "Programming Languages", 0, 0, 0, 0));
 
             // creo otro libro y lo agrego al arreglo de libros.
-            this.libros = Utils.append(this.libros, new Libro("1491910772", "Effective Java", "Joshua Bloch", "Programming Languages", 0, 1));
+            this.libros = Utils.append(this.libros, new Libro("1491910772", "Effective Java", "Joshua Bloch", "Programming Languages", 0, 0, 0, 0));
 
         } finally {
             // guardo la informacion.
@@ -145,7 +145,8 @@ public final class Sistema {
             sb.append("Autor     : ").append(libro.getAutor()).append("\n");
             sb.append("ISBN      : ").append(libro.getIsbn()).append("\n");
             sb.append("Categoria : ").append(libro.getCategoria()).append("\n");
-            sb.append("Calificacion : ").append(libro.getCalificacion()).append("\n");
+            sb.append("Calificacion : ").append(String.format("%.1f", libro.getPromedioCalif())).append("\n");
+            sb.append("Disponibilidad : ").append(libro.getDisponible()).append("\n");
             sb.append("\n");
         }
 
@@ -210,15 +211,24 @@ public final class Sistema {
                 + "Correo Electronico: " + this.socio.getCorreoElectronico();
     }
 
-    public int calificarLibro(final String isbn, int calif) {
+    public void calificarLibro(final String isbnLibro, double calif) {
         for (Libro libro : this.libros) {
             // si lo encontre, retorno el libro.
-            if (libro.getIsbn().equals(isbn)) {
-                libro.setCalificacion(calif);
-                return 0;
+            if (libro.getIsbn().equals(isbnLibro)) {
+                double califInicial = libro.getCalificacion();
+                if (califInicial == 0) {
+                    libro.setCalificacion(calif);
+                    libro.setNumCalificaciones(1);
+                    libro.setPromedioCalif(calif);
+                } else {
+                    double sumador = califInicial + calif;
+                    libro.setCalificacion(sumador);
+                    double contador = 1 + libro.getNumCalificaciones();
+                    libro.setNumCalificaciones((int) contador);
+                    double promedio = (sumador / contador);
+                    libro.setPromedioCalif(promedio);
+                }
             }
         }
-        // no lo encontre, retorno null.
-        return -1;
     }
 }

@@ -14,40 +14,42 @@ public final class Libro {
     /**
      * El ISBN.
      */
-    private String isbn;
+    private final String isbn;
 
     /**
      * El Titulo.
      */
-    private String titulo;
+    private final String titulo;
 
     /**
      * El/La Autor/a.
      */
-    private String autor;
+    private final String autor;
 
     /**
      * La Categoria
      */
-    private String categoria;
+    private final String categoria;
 
     /**
      * La calificacion
      */
-    private int calificacion;
+    private double calificacion;
+    private double numCalificaciones;
+    private double promedioCalif;
 
     private int disponible;
 
     /**
      * El constructor
      *
-     * @param isbn         del libro.
-     * @param titulo       del libro.
-     * @param autor        del libro
-     * @param categoria    del libro.
-     * @param calificacion del libro.
+     * @param isbn      del libro.
+     * @param titulo    del libro.
+     * @param autor     del libro
+     * @param categoria del libro.
+     * @param calif     del libro.
      */
-    public Libro(final String isbn, final String titulo, final String autor, final String categoria, int calificacion, int disponible) {
+    public Libro(final String isbn, final String titulo, final String autor, final String categoria, double calif, double contador, double promedioCalif, int disponible) {
         if (isbn == null || isbn.length() == 0) {
             throw new IllegalArgumentException("ISBN no valido!");
         }
@@ -71,12 +73,22 @@ public final class Libro {
         if (calificacion < 0 || calificacion > 5) {
             throw new IllegalArgumentException("Calificacion no valida!");
         }
-        this.calificacion = calificacion;
+        this.calificacion = calif;
 
         if (disponible < 0 || disponible > 1) {
             throw new IllegalArgumentException("Disponibilidad no valida!");
         }
         this.disponible = disponible;
+
+        if (numCalificaciones < 0 || numCalificaciones > 5) {
+            throw new IllegalArgumentException("Calificacion no valida!");
+        }
+        this.numCalificaciones = contador;
+
+        if (promedioCalif < 0 || promedioCalif > 5) {
+            throw new IllegalArgumentException("Calificacion no valida!");
+        }
+        this.promedioCalif = promedioCalif;
     }
 
     /**
@@ -110,12 +122,28 @@ public final class Libro {
     /**
      * @return la calificacion
      */
-    public int getCalificacion() {
+    public double getCalificacion() {
         return this.calificacion;
     }
 
-    public void setCalificacion(int calificacion) {
-        this.calificacion = calificacion;
+    public void setCalificacion(Double calif) {
+        this.calificacion = calif;
+    }
+
+    public double getNumCalificaciones() {
+        return numCalificaciones;
+    }
+
+    public void setNumCalificaciones(int contador) {
+        this.numCalificaciones = contador;
+    }
+
+    public double getPromedioCalif() {
+        return promedioCalif;
+    }
+
+    public void setPromedioCalif(double promedioCalif) {
+        this.promedioCalif = promedioCalif;
     }
 
     /**

@@ -4,7 +4,9 @@
     "titulo": "Head First Java: A Brain-Friendly Guide",
     "autor": "Kathy Sierra",
     "categoria": "Programming Languages",
-    "calificacion": 0,
+    "calificacion": 0.0,
+    "numCalificaciones": 0.0,
+    "promedioCalif": 0.0,
     "disponible": 0
   },
   {
@@ -12,7 +14,9 @@
     "titulo": "Effective Java",
     "autor": "Joshua Bloch",
     "categoria": "Programming Languages",
-    "calificacion": 0,
+    "calificacion": 0.0,
+    "numCalificaciones": 0.0,
+    "promedioCalif": 0.0,
     "disponible": 0
   }
 ]

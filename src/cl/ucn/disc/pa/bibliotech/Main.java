@@ -27,7 +27,7 @@ public final class Main {
      * @param args to use.
      * @throws IOException en caso de un error.
      */
-    public static void main(final String[] args) throws IOException {
+    public static void main(final String[] args) throws Exception {
 
         // inicializacion del sistema.
         Sistema sistema = new Sistema();
@@ -59,7 +59,7 @@ public final class Main {
      *
      * @param sistema a utilizar.
      */
-    private static void iniciarSesion(final Sistema sistema) {
+    private static void iniciarSesion(final Sistema sistema) throws Exception {
         StdOut.println("[*] Iniciar sesion en BiblioTech [*]");
         StdOut.print("Ingrese su numero de socio: ");
         numeroSocio = StdIn.readInt();
@@ -79,7 +79,7 @@ public final class Main {
         menuPrincipal(sistema);
     }
 
-    private static void menuPrincipal(final Sistema sistema) {
+    private static void menuPrincipal(final Sistema sistema) throws Exception {
         String opcion = null;
         while (!Objects.equals(opcion, "4")) {
             StdOut.println("""
@@ -145,31 +145,17 @@ public final class Main {
     }
 
     private static void calificarLibro(Sistema sistema) {
-        int seguir = -1;
-
-        while (seguir != 0) {
-
-            StdOut.println("[*] Calificar un Libro [*]");
-            StdOut.println(sistema.obtenerCatalogoLibros());
-            StdOut.print("Ingrese el ISBN del libro a calificar: ");
-            String isbnLibro = StdIn.readString();
-            StdOut.print("Ingrese la calificacion [0 - 5]: ");
-            int calif = StdIn.readInt();
-
+        StdOut.println("[*] Calificar un Libro [*]");
+        StdOut.println(sistema.obtenerCatalogoLibros());
+        StdOut.print("Ingrese el ISBN del libro a calificar: ");
+        String isbnLibro = StdIn.readString();
+        StdOut.print("Ingrese la calificacion [0 - 5]: ");
+        double calif = StdIn.readDouble();
+        if (calif < 0 || calif > 5) {
+            StdOut.println("\n Error al calificar!!! \n");
+        } else {
             sistema.calificarLibro(isbnLibro, calif);
-
-            StdOut.print("¿Desea seguir? [0(NO) - 1(SI)]: ");
-            seguir = StdIn.readInt();
-            switch (seguir) {
-                case 0:
-                    StdOut.println("\n Volviendo al menú anterior... \n");
-                    seguir = 0;
-                    break;
-                case 1:
-                    calificarLibro(sistema);
-                default:
-                    StdOut.println("Opcion no valida, intente nuevamente");
-            }
+            StdOut.println("\n Libro calificado con exito. \n");
         }
     }
 
