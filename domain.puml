@@ -1,0 +1,56 @@
+@startuml
+left to right direction
+skin rose
+
+class Libro {
+  ISBN
+  Titulo
+  Autor
+  Categoria
+  Calificacion
+  Copias disponibles
+}
+class Socio{
+ Nombre
+ Apellido
+ CorreoElectronico
+ numeroDeSocio
+ contraseña
+ Lista de libros prestados
+}
+
+class Sistema{
+Lista de socios
+Lista de libros
+}
+
+entity PrestamoDeLibros{
+ ISBN
+ Copias disponibles
+
+}
+
+entity EditarInformacion{
+ Nombre
+ Apellido
+ Correo electronico
+}
+
+entity CalificarLibro{
+ ISBN
+ Calificación
+
+}
+
+
+Sistema "1" -up-> "1..*" Socio : Contiene >
+Sistema "1" -down-> "1..*" Libro : Contiene >
+Socio "1" -> "1..*" Libro : Arrienda >
+Sistema "1" -up-> "1..*" PrestamoDeLibros : Permite >
+Socio "1..*" -> "1..*" PrestamoDeLibros : Solicita >
+Sistema "1..*" -- "1..*" EditarInformacion : Permite >
+Libro "1" -- "1" CalificarLibro : Recibe <
+Socio "1" -- "1" CalificarLibro : Genera >
+
+
+@enduml

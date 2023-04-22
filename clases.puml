@@ -1,0 +1,61 @@
+@startuml
+left to right direction
+skin rose
+
+class Socio #aliceblue ##[dotted]blue {
+    ..Atributos..
+    -nombre : String
+    -apellido : String
+    -correoElectronico : String
+    -numeroDeSocio : int
+    -contrasenia : String
+    -librosEnPrestamo : Libro[10]
+    ..Constructor && Getters..
+    +Socio(nombre: String, apellido:String , correoElectronico: String , numeroDeSocio: int, contrasenia: String)
+    +getNombre() : String
+    +getApellido() : String
+    +getNombreCompleto() : String
+    +getCorreoElectronico() : String
+    +getNumeroDeSocio() : int
+    +getContrasenia() : String
+    ..Metodos..
+    +agregarLibro(final Libro libro): void
+}
+
+class Libro #aliceblue ##[dotted]blue {
+    ..Atributos..
+    -isbn : String
+    -titulo : String
+    -autor : String
+    -categoria : String
+    ..Constructor && Getters..
+    +Libro(isbn: final String, titulo: final String, autor: final String, categoria: final String)
+    +getIsbn() : String
+    +getTitulo() : String
+    +getAutor() : String
+    +getCategoria() : String
+}
+
+class Sistema #aliceblue ##[dotted]blue {
+    ..Atributos..
+    -socios : Socio[]
+    -libros : Libro[]
+    -socio : Socio
+    ..Constructor && Getters..
+    +Sistema()
+    ..Metodos..
+    +iniciarSession(numeroDeSocio: final int, contrasenia: final String): void
+    +cerrarSession(): void
+    +realizarPrestamoLibro(isbn: final String): void
+    +obtenerCatalogoLibros(): String
+    -buscarLibro(isbn: final String): Libro
+    -cargarInformacion(): void
+    -guardarInformacion(): void
+    +obtenerDatosSocioLogeado(): String
+}
+
+Sistema "1" -- "1.." Socio : Socio[] Contiene >
+Sistema "1" -- "1.." Libro : Libro[] Contiene >
+
+
+@enduml

@@ -1,0 +1,26 @@
+* Arreglar repetición de clasificación de libro al ingresar más de una opcion seguida. (MAIN)
+
+
+1. Préstamo de un libro:
+a. El sistema debe permitir al usuario solicitar un libro de los que hay
+disponibles en el sistema, para ello se debe ingresar el ISBN del libro
+para identificarlo y agregarlo a la lista de libros prestados del usuario.
+b. En caso de no tener copias disponibles el sistema debe arrojar un error
+al usuario.
+
+
+2. Editar su información:
+a. El sistema debe permitir al usuario cambiar la información de su perfil.
+La información editable del usuario es: nombre, apellido y correo
+electrónico.
+
+
+3. Calificar un libro:
+a. El sistema debe permitir al usuario calificar un libro de 0 a 5 estrellas.
+El sistema debe solicitar el ISBN de un libro al cual reseñary el usuario
+deberá ingresar la cantidad de estrellas que desee.
+b. Las estrellas de un libro se deben calcular en base a la cantidad de
+reseñas que tengan y el total de estrellas dadas. Ejemplo: Si persona A
+le da una calificación de 5 estrellas a un libro y persona B le da una
+calificación de 2 estrellas, entonces la calificación del libro deberá ser
+de 3.5 estrellas.
