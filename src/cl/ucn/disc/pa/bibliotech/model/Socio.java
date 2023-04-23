@@ -145,7 +145,7 @@ public final class Socio {
     }
 
     /**
-     * @return el numero del Socio.
+     * @return el número del Socio.
      */
     public int getNumeroDeSocio() {
         return this.numeroDeSocio;

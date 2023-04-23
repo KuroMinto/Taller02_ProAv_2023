@@ -47,7 +47,7 @@ public final class Sistema {
      */
     public Sistema() throws IOException {
 
-        // no hay socio logeado.
+        // no hay socio registrado.
         this.socios = new Socio[0];
         this.libros = new Libro[0];
         this.socio = null;
@@ -68,7 +68,7 @@ public final class Sistema {
             this.libros = Utils.append(this.libros, new Libro("1491910772", "Effective Java", "Joshua Bloch", "Programming Languages", 0, 0, 0, 1));
 
         } finally {
-            // guardo la informacion.
+            // guardo la información.
             this.guardarInformacion();
         }
 
@@ -82,7 +82,7 @@ public final class Sistema {
      */
     public void iniciarSession(final int numeroDeSocio, final String contrasenia) {
 
-        // el numero de socio siempre es positivo.
+        // el número de socio siempre es positivo.
         if (numeroDeSocio <= 0) {
             throw new IllegalArgumentException("El numero de socio no es valido!");
         }
@@ -127,7 +127,7 @@ public final class Sistema {
                 libro.setDisponible(0);
             }
 
-            // se actualiza la informacion de los archivos
+            // se actualiza la información de los archivos
             this.guardarInformacion();
         }
     }
@@ -205,7 +205,7 @@ public final class Sistema {
     /**
      * Obtiene ciertos parametros de una instancia del objeto Socio.
      *
-     * @return
+     * @return El nombre completo y el Correo
      */
     public String obtenerDatosSocioLogeado() {
         if (this.socio == null) {
@@ -221,14 +221,14 @@ public final class Sistema {
      *
      * @param isbnLibro -> ISBN del Libro
      * @param calif     -> Calificacion que le da el usuario al Libro.
-     * @throws IOException
+     * @throws IOException .
      */
     public void calificarLibro(final String isbnLibro, double calif) throws IOException {
         for (Libro libro : this.libros) {
             // si lo encontre, retorno el libro.
             if (libro.getIsbn().equals(isbnLibro)) {
                 double califInicial = libro.getSumCalificacion();
-                // Verifico si la calificacion inicial del libro es 0 o diferente, si es 0 la calificacion del usuario sera la seteada en el sumador, +1 en el contador y seteada en el promedio.
+                // Verifico si la calificacion inicial del libro es 0 o diferente, si es 0 la calificacion del usuario será la seteada en el sumador, +1 en el contador y seteada en el promedio.
                 if (califInicial == 0) {
                     libro.setSumCalificacion(calif);
                     libro.setNumCalificaciones(1);
@@ -248,7 +248,7 @@ public final class Sistema {
 
     /**
      * @param nombre -> Es el nombre nuevo que da el usuario.
-     * @throws IOException
+     * @throws IOException .
      */
     public void cambiareIlNome(String nombre) throws IOException { //Nombre del metodo en Italiano. (cambiarElNombre)
         if (this.socio == null) {
@@ -261,7 +261,7 @@ public final class Sistema {
 
     /**
      * @param apellido -> Es el apellido nuevo que da el usuario.
-     * @throws IOException
+     * @throws IOException .
      */
     public void cambiareIlCognome(String apellido) throws IOException { //Nombre del metodo en Italiano. (cambiarElApellido)
         if (this.socio == null) {
@@ -274,7 +274,7 @@ public final class Sistema {
 
     /**
      * @param correo -> Es el correo nuevo que da el usuario.
-     * @throws IOException
+     * @throws IOException .
      */
     public void cambiareIlEmail(String correo) throws IOException { //Nombre del metodo en Italiano. (cambiarElCorreo)
         if (this.socio == null) {

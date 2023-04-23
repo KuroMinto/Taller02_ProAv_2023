@@ -82,8 +82,8 @@ public final class Main {
     /**
      * Método para abrir el menu principal.
      *
-     * @param sistema
-     * @throws Exception
+     * @param sistema .
+     * @throws Exception .
      */
     private static void menuPrincipal(final Sistema sistema) throws Exception {
         String opcion = null;
@@ -114,7 +114,7 @@ public final class Main {
     /**
      * Método para abrir el menú de prestamo de libros.
      *
-     * @param sistema
+     * @param sistema .
      */
     private static void menuPrestamo(Sistema sistema) {
         StdOut.println("[*] Préstamo de un Libro [*]");
@@ -133,8 +133,8 @@ public final class Main {
     /**
      * Método para abrir el menú de edición de información.
      *
-     * @param sistema
-     * @throws IOException
+     * @param sistema .
+     * @throws IOException .
      */
     private static void editarInformacion(Sistema sistema) throws IOException {
 
@@ -164,8 +164,8 @@ public final class Main {
     /**
      * Método para Calificar un Libro.
      *
-     * @param sistema
-     * @throws IOException
+     * @param sistema .
+     * @throws IOException .
      */
     private static void calificarLibro(Sistema sistema) throws IOException {
         StdOut.println("[*] Calificar un Libro [*]");
@@ -185,8 +185,8 @@ public final class Main {
     /**
      * Método para cambiar el Nombre o el Apellido del Socio.
      *
-     * @param sistema
-     * @throws IOException
+     * @param sistema .
+     * @throws IOException .
      */
     private static void cambiarNombreOApellido(Sistema sistema) throws IOException {
 
@@ -222,8 +222,8 @@ public final class Main {
     /**
      * Método para Editar el Correo del Socio.
      *
-     * @param sistema
-     * @throws IOException
+     * @param sistema .
+     * @throws IOException .
      */
     private static void editarCorreo(Sistema sistema) throws IOException {
         StdOut.println("[*] Editar Correo Electronico [*]");

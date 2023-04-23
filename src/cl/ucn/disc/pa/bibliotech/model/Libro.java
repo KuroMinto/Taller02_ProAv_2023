@@ -17,7 +17,7 @@ public final class Libro {
     private final String isbn;
 
     /**
-     * El Titulo.
+     * El Título.
      */
     private final String titulo;
 
@@ -47,7 +47,7 @@ public final class Libro {
 
     /**
      * @param isbn          recibe el ISBN del libro
-     * @param titulo        recibe el titulo del libro.
+     * @param titulo        recibe el título del libro.
      * @param autor         recibe el autor del libro.
      * @param categoria     recibe la categoria del libro.
      * @param calif         recibe el sumador de todas las clasificaciones del libro.
@@ -96,7 +96,7 @@ public final class Libro {
     }
 
     /**
-     * @return el titulo.
+     * @return el título.
      */
     public String getTitulo() {
         return this.titulo;
