@@ -119,7 +119,7 @@ public final class Main {
         }
     }
 
-    private static void editarInformacion(Sistema sistema) {
+    private static void editarInformacion(Sistema sistema) throws IOException {
 
         String opcion = null;
         while (!Objects.equals(opcion, "3")) {
@@ -127,8 +127,8 @@ public final class Main {
             StdOut.println("[*] Editar Perfil [*]");
             StdOut.println(sistema.obtenerDatosSocioLogeado());
             StdOut.println("""               
-                    [1] Editar correo Electronico
-                    [2] Editar Contraseña
+                    [1] Editar Nombre y/o Apellido
+                    [2] Editar Correo
                                         
                     [3] Volver atrás
                     """);
@@ -136,15 +136,15 @@ public final class Main {
             opcion = StdIn.readString();
 
             switch (opcion) {
-                case "1" -> editarCorreo(sistema);
-                case "2" -> cambiarContrasenia(sistema);
+                case "1" -> cambiarNombreOApellido(sistema);
+                case "2" -> editarCorreo(sistema);
                 case "3" -> StdOut.println("Volviendo al menú anterior...");
                 default -> StdOut.println("Opcion no valida, intente nuevamente");
             }
         }
     }
 
-    private static void calificarLibro(Sistema sistema) {
+    private static void calificarLibro(Sistema sistema) throws IOException {
         StdOut.println("[*] Calificar un Libro [*]");
         StdOut.println(sistema.obtenerCatalogoLibros());
         StdOut.print("Ingrese el ISBN del libro a calificar: ");
@@ -159,11 +159,44 @@ public final class Main {
         }
     }
 
-    private static void cambiarContrasenia(Sistema sistema) {
-        // TODO: implementar este metodo
+    private static void cambiarNombreOApellido(Sistema sistema) throws IOException {
+
+        StdOut.println("[*] Editar Nombre y/ Apellido [*]");
+        StdOut.println(sistema.obtenerDatosSocioLogeado());
+        StdOut.println("""               
+                [1] Editar Nombre
+                [2] Editar Apellido
+                                    
+                [3] Volver atrás
+                """);
+        StdOut.print("Escoja una opción: ");
+        String opcion = StdIn.readString();
+
+        switch (opcion) {
+            case "1":
+                StdOut.print("Ingrese su nuevo nombre: ");
+                String nombre = StdIn.readString();
+                sistema.cambiareIlNome(nombre);
+                break;
+            case "2":
+                StdOut.print("Ingrese su nuevo apellido: ");
+                String apellido = StdIn.readString();
+                sistema.cambiareIlCognome(apellido);
+                break;
+            case "3":
+                StdOut.println("Volviendo al menú anterior...");
+            default:
+                StdOut.println("Opcion no valida, intente nuevamente");
+        }
     }
 
-    private static void editarCorreo(Sistema sistema) {
-        // TODO: implementar este metodo
+    private static void editarCorreo(Sistema sistema) throws IOException {
+        StdOut.println("[*] Editar Correo Electronico [*]");
+        StdOut.println(sistema.obtenerDatosSocioLogeado());
+        StdOut.print("Ingrese el nuevo email: ");
+        String correo = StdIn.readString();
+        sistema.cambiareIlEmail(correo);
+        StdOut.println("Nuevos datos: " +
+                sistema.obtenerDatosSocioLogeado());
     }
 }

@@ -8,6 +8,7 @@ import cl.ucn.disc.pa.bibliotech.model.Libro;
 import cl.ucn.disc.pa.bibliotech.model.Socio;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import edu.princeton.cs.stdlib.StdOut;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -61,10 +62,10 @@ public final class Sistema {
             this.socios = Utils.append(this.socios, new Socio("John", "Doe", "john.doe@ucn.cl", 1, "john123"));
 
             // creo un libro y lo agrego al arreglo de libros.
-            this.libros = Utils.append(this.libros, new Libro("1491910771", "Head First Java: A Brain-Friendly Guide", " Kathy Sierra", "Programming Languages", 0, 0, 0, 0));
+            this.libros = Utils.append(this.libros, new Libro("1491910771", "Head First Java: A Brain-Friendly Guide", " Kathy Sierra", "Programming Languages", 0, 0, 0, 1));
 
             // creo otro libro y lo agrego al arreglo de libros.
-            this.libros = Utils.append(this.libros, new Libro("1491910772", "Effective Java", "Joshua Bloch", "Programming Languages", 0, 0, 0, 0));
+            this.libros = Utils.append(this.libros, new Libro("1491910772", "Effective Java", "Joshua Bloch", "Programming Languages", 0, 0, 0, 1));
 
         } finally {
             // guardo la informacion.
@@ -116,20 +117,19 @@ public final class Sistema {
         Libro libro = this.buscarLibro(isbn);
 
         // si no lo encontre, lo informo.
-        if (libro == null) {
-            throw new IllegalArgumentException("Libro con isbn " + isbn + " no existe o no se encuentra disponible.");
+        if (libro == null || libro.getDisponible() == 0) {
+            StdOut.println("Libro con isbn " + isbn + " no existe o no se encuentra disponible.");
+        } else {
+            // agrego el libro al socio.
+            this.socio.agregarLibro(libro);
+
+            if (libro.getIsbn().equals(isbn)) {
+                libro.setDisponible(0);
+            }
+
+            // se actualiza la informacion de los archivos
+            this.guardarInformacion();
         }
-
-        // agrego el libro al socio.
-        this.socio.agregarLibro(libro);
-
-        if (libro.getIsbn().equals(isbn)) {
-            libro.setDisponible(0);
-        }
-
-        // se actualiza la informacion de los archivos
-        this.guardarInformacion();
-
     }
 
     /**
@@ -211,7 +211,7 @@ public final class Sistema {
                 + "Correo Electronico: " + this.socio.getCorreoElectronico();
     }
 
-    public void calificarLibro(final String isbnLibro, double calif) {
+    public void calificarLibro(final String isbnLibro, double calif) throws IOException {
         for (Libro libro : this.libros) {
             // si lo encontre, retorno el libro.
             if (libro.getIsbn().equals(isbnLibro)) {
@@ -230,5 +230,33 @@ public final class Sistema {
                 }
             }
         }
+        this.guardarInformacion();
+    }
+
+    public void cambiareIlNome(String nombre) throws IOException { //Nombre del metodo en Italiano.
+        if (this.socio == null) {
+            throw new IllegalArgumentException("No hay un Socio logeado");
+        }
+
+        this.socio.setNombre(nombre);
+        this.guardarInformacion();
+    }
+
+    public void cambiareIlCognome(String apellido) throws IOException { //Nombre del metodo en Italiano.
+        if (this.socio == null) {
+            throw new IllegalArgumentException("No hay un Socio logeado");
+        }
+
+        this.socio.setApellido(apellido);
+        this.guardarInformacion();
+    }
+
+    public void cambiareIlEmail(String correo) throws IOException { //Nombre del metodo en Italiano.
+        if (this.socio == null) {
+            throw new IllegalArgumentException("No hay un Socio logeado");
+        }
+
+        this.socio.setCorreoElectronico(correo);
+        this.guardarInformacion();
     }
 }

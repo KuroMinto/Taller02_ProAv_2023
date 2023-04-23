@@ -32,7 +32,9 @@ public final class Libro {
     private final String categoria;
 
     /**
-     * La calificacion
+     * Calificacion -> Sumador de todas las clasificaciones dadas a una instancia de un libro.
+     * numCalificaciones -> Número total de clasificaciones dadas a una instancia de un libro.
+     * promedioCalif -> Promedio total  de  clasificaciones dadas a una instancia de un libro.
      */
     private double calificacion;
     private double numCalificaciones;
@@ -41,13 +43,14 @@ public final class Libro {
     private int disponible;
 
     /**
-     * El constructor
-     *
-     * @param isbn      del libro.
-     * @param titulo    del libro.
-     * @param autor     del libro
-     * @param categoria del libro.
-     * @param calif     del libro.
+     * @param isbn          recibe el ISBN del libro
+     * @param titulo        recibe el titulo del libro.
+     * @param autor         recibe el autor del libro.
+     * @param categoria     recibe la categoria del libro.
+     * @param calif         recibe el sumador de todas las clasificaciones del libro.
+     * @param contador      recibe el contador de clasificaciones del libro.
+     * @param promedioCalif recibe el promedio de clasificaciones del libro.
+     * @param disponible    recibe la disponibilidad que tiene el libro.
      */
     public Libro(final String isbn, final String titulo, final String autor, final String categoria, double calif, double contador, double promedioCalif, int disponible) {
         if (isbn == null || isbn.length() == 0) {
@@ -126,22 +129,37 @@ public final class Libro {
         return this.calificacion;
     }
 
+    /**
+     * @param calif setea el sumador de las clasificaciones del libro.
+     */
     public void setCalificacion(Double calif) {
         this.calificacion = calif;
     }
 
+    /**
+     * @return el número de calificaiones
+     */
     public double getNumCalificaciones() {
         return numCalificaciones;
     }
 
+    /**
+     * @param contador setea el contador de calificaciones del libro.
+     */
     public void setNumCalificaciones(int contador) {
         this.numCalificaciones = contador;
     }
 
+    /**
+     * @return el promedio de calificaciones
+     */
     public double getPromedioCalif() {
         return promedioCalif;
     }
 
+    /**
+     * @param promedioCalif setea el promedio de calificaciones del libro.
+     */
     public void setPromedioCalif(double promedioCalif) {
         this.promedioCalif = promedioCalif;
     }

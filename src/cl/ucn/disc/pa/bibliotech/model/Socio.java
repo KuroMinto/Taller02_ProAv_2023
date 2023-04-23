@@ -5,6 +5,7 @@
 package cl.ucn.disc.pa.bibliotech.model;
 
 import cl.ucn.disc.pa.bibliotech.services.Utils;
+import edu.princeton.cs.stdlib.StdOut;
 
 /**
  * Clase que representa a un Socio.
@@ -36,17 +37,17 @@ public final class Socio {
     /**
      * Numero del socio.
      */
-    private int numeroDeSocio;
+    private final int numeroDeSocio;
 
     /**
      * Contrasenia del socio.
      */
-    private String contrasenia;
+    private final String contrasenia;
 
     /**
      * Libros que el Socio tiene en prestamo (maximo 10).
      */
-    private Libro[] librosEnPrestamo = new Libro[10];
+    private final Libro[] librosEnPrestamo;
 
     /**
      * The Constructor.
@@ -86,6 +87,8 @@ public final class Socio {
         } else {
             this.contrasenia = contrasenia;
         }
+
+        this.librosEnPrestamo = new Libro[10];
     }
 
     /**
@@ -103,6 +106,20 @@ public final class Socio {
     }
 
     /**
+     * @param nombre setea el nombre del socio.
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @param apellido setea el apellido del socio.
+     */
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    /**
      * @return el nombre completo del Socio.
      */
     public String getNombreCompleto() {
@@ -114,6 +131,13 @@ public final class Socio {
      */
     public String getCorreoElectronico() {
         return this.correoElectronico;
+    }
+
+    /**
+     * @param correoElectronico setea el correo del socio.
+     */
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
     }
 
     /**
@@ -141,6 +165,13 @@ public final class Socio {
             throw new IllegalArgumentException("El Socio ya tiene la maxima cantidad de libros en prestamo: " + NUMERO_LIBROS_MAXIMO);
         }
         // agrego el libro
-        Utils.append(this.librosEnPrestamo, libro);
+        for (int i = 0; i < librosEnPrestamo.length; i++) {
+            if (librosEnPrestamo[i] == null) {
+                String nombreLibro = libro.getTitulo();
+                this.librosEnPrestamo[i] = libro;
+                StdOut.println("Prestamo del libro realizado.");
+                break;
+            }
+        }
     }
 }
