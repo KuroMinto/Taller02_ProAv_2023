@@ -6,26 +6,8 @@
     "numeroDeSocio": 1,
     "contrasenia": "john123",
     "librosEnPrestamo": [
-      {
-        "isbn": "1491910772",
-        "titulo": "Effective Java",
-        "autor": "Joshua Bloch",
-        "categoria": "Programming Languages",
-        "calificacion": 4.0,
-        "numCalificaciones": 4.0,
-        "promedioCalif": 1.0,
-        "disponible": 0
-      },
-      {
-        "isbn": "1491910771",
-        "titulo": "Head First Java: A Brain-Friendly Guide",
-        "autor": "Kathy Sierra",
-        "categoria": "Programming Languages",
-        "calificacion": 5.0,
-        "numCalificaciones": 1.0,
-        "promedioCalif": 5.0,
-        "disponible": 0
-      },
+      null,
+      null,
       null,
       null,
       null,
