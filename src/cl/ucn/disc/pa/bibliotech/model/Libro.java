@@ -36,7 +36,7 @@ public final class Libro {
      * numCalificaciones -> Número total de clasificaciones dadas a una instancia de un libro.
      * promedioCalif -> Promedio total  de  clasificaciones dadas a una instancia de un libro.
      */
-    private double calificacion;
+    private double sumCalificacion;
     private double numCalificaciones;
     private double promedioCalif;
 
@@ -73,19 +73,10 @@ public final class Libro {
         }
         this.categoria = categoria;
 
-        if (calificacion < 0 || calificacion > 5) {
-            throw new IllegalArgumentException("Calificacion no valida!");
-        }
-        this.calificacion = calif;
+        this.sumCalificacion = calif;
 
-        if (disponible < 0 || disponible > 1) {
-            throw new IllegalArgumentException("Disponibilidad no valida!");
-        }
         this.disponible = disponible;
 
-        if (numCalificaciones < 0 || numCalificaciones > 5) {
-            throw new IllegalArgumentException("Calificacion no valida!");
-        }
         this.numCalificaciones = contador;
 
         if (promedioCalif < 0 || promedioCalif > 5) {
@@ -125,15 +116,15 @@ public final class Libro {
     /**
      * @return la calificacion
      */
-    public double getCalificacion() {
-        return this.calificacion;
+    public double getSumCalificacion() {
+        return this.sumCalificacion;
     }
 
     /**
      * @param calif setea el sumador de las clasificaciones del libro.
      */
-    public void setCalificacion(Double calif) {
-        this.calificacion = calif;
+    public void setSumCalificacion(double calif) {
+        this.sumCalificacion = calif;
     }
 
     /**

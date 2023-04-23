@@ -1,56 +1,67 @@
 @startuml
 left to right direction
 skin rose
+skinparam backgroundcolor AntiqueWhite/Gold
+skinparam classBackgroundColor Wheat|CornflowerBlue
+
+class Socio{
+    Nombre
+    Apellido
+    CorreoElectronico
+    numeroDeSocio
+    contraseña
+    Lista de libros prestados
+}
 
 class Libro {
-  ISBN
-  Titulo
-  Autor
-  Categoria
-  Calificacion
-  Copias disponibles
-}
-class Socio{
- Nombre
- Apellido
- CorreoElectronico
- numeroDeSocio
- contraseña
- Lista de libros prestados
+    ISBN
+    Título
+    Autor
+    Categoria
+    Sumador de Calificaciones
+    Contador de Calificaciones
+    Promedio de Calificaciones
+    Disponibilidad
 }
 
 class Sistema{
-Lista de socios
-Lista de libros
+    Lista de socios
+    Lista de libros
+    Socio
 }
 
-entity PrestamoDeLibros{
- ISBN
- Copias disponibles
-
+entity Prestamo{
+    ISBN
+    Copias disponibles
 }
 
-entity EditarInformacion{
- Nombre
- Apellido
- Correo electronico
+entity Editar{
+    Nombre
+    Apellido
+    Correo electronico
 }
 
-entity CalificarLibro{
- ISBN
- Calificación
-
+entity Calificar{
+    ISBN
+    Promedio de Calificacion
 }
 
-
-Sistema "1" -up-> "1..*" Socio : Contiene >
-Sistema "1" -down-> "1..*" Libro : Contiene >
-Socio "1" -> "1..*" Libro : Arrienda >
-Sistema "1" -up-> "1..*" PrestamoDeLibros : Permite >
-Socio "1..*" -> "1..*" PrestamoDeLibros : Solicita >
-Sistema "1..*" -- "1..*" EditarInformacion : Permite >
-Libro "1" -- "1" CalificarLibro : Recibe <
-Socio "1" -- "1" CalificarLibro : Genera >
-
+Sistema "1" o-up-> "1..*" Socio : Contiene >
+Sistema "1" o-down-> "1..*" Libro : Contiene >
+Sistema "1" -up-> "1..*" Prestamo : Permite >
+note "Solo puede si es que está logeado" as N3
+Prestamo .up. N3
+N3 .. Socio
+Socio "1..*" o-> "1..*" Prestamo : Solicita >
+note "Solo puede si es que está logeado" as N1
+Editar .down. N1
+N1 .down. Socio
+Sistema "1..*" -- "1..*" Editar : Permite >
+Socio "1..*" -up- "1..*" Editar : Permite >
+Libro "1" -right- "1" Calificar : Recibe <
+note "Solo puede si es que está logeado" as N2
+Calificar .down. N2
+N2 .down. Socio
+Socio "1" -- "1" Calificar : Genera >
 
 @enduml

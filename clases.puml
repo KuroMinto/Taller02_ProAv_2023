@@ -1,21 +1,27 @@
 @startuml
 left to right direction
 skin rose
+skinparam backgroundcolor AntiqueWhite/Gold
+skinparam classBackgroundColor Wheat|CornflowerBlue
 
 class Socio #aliceblue ##[dotted]blue {
     ..Atributos..
+    -NUMERO_LIBROS_MAXIMO = 5 : int
     -nombre : String
     -apellido : String
     -correoElectronico : String
     -numeroDeSocio : int
     -contrasenia : String
     -librosEnPrestamo : Libro[10]
-    ..Constructor && Getters..
+    ..Constructor, Getters && Setters..
     +Socio(nombre: String, apellido:String , correoElectronico: String , numeroDeSocio: int, contrasenia: String)
     +getNombre() : String
+    +setNombre() : void
     +getApellido() : String
+    +setApellido() : void
     +getNombreCompleto() : String
     +getCorreoElectronico() : String
+    +setCorreoElectronico() : void
     +getNumeroDeSocio() : int
     +getContrasenia() : String
     ..Metodos..
@@ -28,12 +34,24 @@ class Libro #aliceblue ##[dotted]blue {
     -titulo : String
     -autor : String
     -categoria : String
+    -calificacion : double
+    -numCalificaciones : double
+    -promedioCalif : double
+    -disponible : int
     ..Constructor && Getters..
-    +Libro(isbn: final String, titulo: final String, autor: final String, categoria: final String)
+    +Libro(isbn: final String, titulo: final String, autor: final String, categoria: final String, calif: double, contador: double, promedioCalif: double, disponible: int)
     +getIsbn() : String
     +getTitulo() : String
     +getAutor() : String
     +getCategoria() : String
+    +getCalificacion() : double
+    +setCalificacion(calif: double) : void
+    +getNumCalificaciones() : double
+    +setNumCalificaciones(contador: int) : void
+    +getPromedioCalif() : double
+    +setPromedioCalif(promedioCalif: double) : void
+    +getDisponible() : int
+    +setDisponible(disponible: int) : void
 }
 
 class Sistema #aliceblue ##[dotted]blue {
@@ -52,10 +70,15 @@ class Sistema #aliceblue ##[dotted]blue {
     -cargarInformacion(): void
     -guardarInformacion(): void
     +obtenerDatosSocioLogeado(): String
+    +calificarLibro(isbnLibro: final String, calif: double) : void
+    +cambiareIlNome(nombre: String) : void
+    +cambiareIlCognome(apellido: String) : void
+    +cambiareIlEmail(correo: String) : void
 }
 
 Sistema "1" -- "1.." Socio : Socio[] Contiene >
 Sistema "1" -- "1.." Libro : Libro[] Contiene >
+Socio "1" -- "1.." Sistema : librosEnPrestamo[] toma de Libro[] >
 
 
 @enduml

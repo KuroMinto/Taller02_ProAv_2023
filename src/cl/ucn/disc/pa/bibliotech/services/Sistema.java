@@ -215,14 +215,14 @@ public final class Sistema {
         for (Libro libro : this.libros) {
             // si lo encontre, retorno el libro.
             if (libro.getIsbn().equals(isbnLibro)) {
-                double califInicial = libro.getCalificacion();
+                double califInicial = libro.getSumCalificacion();
                 if (califInicial == 0) {
-                    libro.setCalificacion(calif);
+                    libro.setSumCalificacion(calif);
                     libro.setNumCalificaciones(1);
                     libro.setPromedioCalif(calif);
                 } else {
                     double sumador = califInicial + calif;
-                    libro.setCalificacion(sumador);
+                    libro.setSumCalificacion(sumador);
                     double contador = 1 + libro.getNumCalificaciones();
                     libro.setNumCalificaciones((int) contador);
                     double promedio = (sumador / contador);
@@ -233,7 +233,7 @@ public final class Sistema {
         this.guardarInformacion();
     }
 
-    public void cambiareIlNome(String nombre) throws IOException { //Nombre del metodo en Italiano.
+    public void cambiareIlNome(String nombre) throws IOException { //Nombre del metodo en Italiano. (cambiarElNombre)
         if (this.socio == null) {
             throw new IllegalArgumentException("No hay un Socio logeado");
         }
@@ -242,7 +242,7 @@ public final class Sistema {
         this.guardarInformacion();
     }
 
-    public void cambiareIlCognome(String apellido) throws IOException { //Nombre del metodo en Italiano.
+    public void cambiareIlCognome(String apellido) throws IOException { //Nombre del metodo en Italiano. (cambiarElApellido)
         if (this.socio == null) {
             throw new IllegalArgumentException("No hay un Socio logeado");
         }
@@ -251,7 +251,7 @@ public final class Sistema {
         this.guardarInformacion();
     }
 
-    public void cambiareIlEmail(String correo) throws IOException { //Nombre del metodo en Italiano.
+    public void cambiareIlEmail(String correo) throws IOException { //Nombre del metodo en Italiano. (cambiarElCorreo)
         if (this.socio == null) {
             throw new IllegalArgumentException("No hay un Socio logeado");
         }
