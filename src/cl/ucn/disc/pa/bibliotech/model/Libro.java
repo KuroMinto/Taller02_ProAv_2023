@@ -40,6 +40,9 @@ public final class Libro {
     private double numCalificaciones;
     private double promedioCalif;
 
+    /**
+     * La disponibilidad
+     */
     private int disponible;
 
     /**
@@ -162,6 +165,9 @@ public final class Libro {
         return this.disponible;
     }
 
+    /**
+     * @param disponible setea la disponibilidad del Libro.
+     */
     public void setDisponible(int disponible) {
         this.disponible = disponible;
     }

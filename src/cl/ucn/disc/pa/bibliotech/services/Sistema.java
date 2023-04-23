@@ -202,6 +202,11 @@ public final class Sistema {
         }
     }
 
+    /**
+     * Obtiene ciertos parametros de una instancia del objeto Socio.
+     *
+     * @return
+     */
     public String obtenerDatosSocioLogeado() {
         if (this.socio == null) {
             throw new IllegalArgumentException("No hay un Socio logeado");
@@ -211,16 +216,24 @@ public final class Sistema {
                 + "Correo Electronico: " + this.socio.getCorreoElectronico();
     }
 
+    /**
+     * Método para asignar una clasificación a los libros.
+     *
+     * @param isbnLibro -> ISBN del Libro
+     * @param calif     -> Calificacion que le da el usuario al Libro.
+     * @throws IOException
+     */
     public void calificarLibro(final String isbnLibro, double calif) throws IOException {
         for (Libro libro : this.libros) {
             // si lo encontre, retorno el libro.
             if (libro.getIsbn().equals(isbnLibro)) {
                 double califInicial = libro.getSumCalificacion();
+                // Verifico si la calificacion inicial del libro es 0 o diferente, si es 0 la calificacion del usuario sera la seteada en el sumador, +1 en el contador y seteada en el promedio.
                 if (califInicial == 0) {
                     libro.setSumCalificacion(calif);
                     libro.setNumCalificaciones(1);
                     libro.setPromedioCalif(calif);
-                } else {
+                } else { // Si es diferente de 0, se suman las calificaciones, se agrega 1 al contador de las calificaciones totales del libro y se saca el promedio total del Libro.
                     double sumador = califInicial + calif;
                     libro.setSumCalificacion(sumador);
                     double contador = 1 + libro.getNumCalificaciones();
@@ -233,6 +246,10 @@ public final class Sistema {
         this.guardarInformacion();
     }
 
+    /**
+     * @param nombre -> Es el nombre nuevo que da el usuario.
+     * @throws IOException
+     */
     public void cambiareIlNome(String nombre) throws IOException { //Nombre del metodo en Italiano. (cambiarElNombre)
         if (this.socio == null) {
             throw new IllegalArgumentException("No hay un Socio logeado");
@@ -242,6 +259,10 @@ public final class Sistema {
         this.guardarInformacion();
     }
 
+    /**
+     * @param apellido -> Es el apellido nuevo que da el usuario.
+     * @throws IOException
+     */
     public void cambiareIlCognome(String apellido) throws IOException { //Nombre del metodo en Italiano. (cambiarElApellido)
         if (this.socio == null) {
             throw new IllegalArgumentException("No hay un Socio logeado");
@@ -251,6 +272,10 @@ public final class Sistema {
         this.guardarInformacion();
     }
 
+    /**
+     * @param correo -> Es el correo nuevo que da el usuario.
+     * @throws IOException
+     */
     public void cambiareIlEmail(String correo) throws IOException { //Nombre del metodo en Italiano. (cambiarElCorreo)
         if (this.socio == null) {
             throw new IllegalArgumentException("No hay un Socio logeado");

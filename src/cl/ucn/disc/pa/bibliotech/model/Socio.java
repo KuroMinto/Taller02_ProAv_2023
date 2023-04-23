@@ -15,7 +15,7 @@ import edu.princeton.cs.stdlib.StdOut;
 public final class Socio {
 
     /**
-     * Numero maximo de libros que puede tener el Socio.
+     * Número maximo de libros que puede tener el Socio.
      */
     private static final int NUMERO_LIBROS_MAXIMO = 5;
 
@@ -50,7 +50,7 @@ public final class Socio {
     private final Libro[] librosEnPrestamo;
 
     /**
-     * The Constructor.
+     * Constructor del objeto Socio
      *
      * @param nombre            del socio.
      * @param apellido          del socio.
@@ -60,12 +60,14 @@ public final class Socio {
      */
     public Socio(String nombre, String apellido, String correoElectronico, int numeroDeSocio, String contrasenia) {
 
+        // Verificacion del nombre
         if (nombre == null) {
             throw new IllegalArgumentException("El nombre no existe.");
         } else {
             this.nombre = nombre;
         }
 
+        // Verificacion del Apellido
         if (apellido == null) {
             throw new IllegalArgumentException("El apellido no existe.");
         } else {
@@ -76,12 +78,14 @@ public final class Socio {
         Utils.validarEmail(correoElectronico);
         this.correoElectronico = correoElectronico;
 
+        // Verificacion del Número de Socio
         if (numeroDeSocio == -1) {
             throw new IllegalArgumentException("El número de socio no existe.");
         } else {
             this.numeroDeSocio = numeroDeSocio;
         }
 
+        // Verificacion de la Contraseña
         if (contrasenia == null) {
             throw new IllegalArgumentException("La contraseña es incorrecta.");
         } else {
@@ -164,10 +168,9 @@ public final class Socio {
         if (this.librosEnPrestamo.length == NUMERO_LIBROS_MAXIMO) {
             throw new IllegalArgumentException("El Socio ya tiene la maxima cantidad de libros en prestamo: " + NUMERO_LIBROS_MAXIMO);
         }
-        // agrego el libro
+        // agrego el libro, recorro el arreglo de librosEnPrestamo hasta encontrar un null, luego procede a agregar los valores de la instancia del libro al array.
         for (int i = 0; i < librosEnPrestamo.length; i++) {
             if (librosEnPrestamo[i] == null) {
-                String nombreLibro = libro.getTitulo();
                 this.librosEnPrestamo[i] = libro;
                 StdOut.println("Prestamo del libro realizado.");
                 break;
